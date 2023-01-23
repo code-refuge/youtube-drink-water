@@ -2,8 +2,9 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { NavigationContainer, ParamListBase } from '@react-navigation/native';
 import { Text } from 'native-base';
 import { View } from 'react-native';
-import { Dashboard } from '../screens/Dashboard';
+import { DashboardScreen } from '../screens/DashboardScreen';
 import Icon from 'react-native-vector-icons/AntDesign';
+import { ProfileScreen } from '../screens/ProfileScreen';
 
 type ITabRoutes = {
   Settings: undefined;
@@ -22,11 +23,11 @@ export const Routes: React.FunctionComponent<IMyTabs> = () => {
           title: 'Configurações',
           tabBarIcon: () => <Icon name="setting" size={20} color="purple" />
         }} />
-        <Tab.Screen name="Dashboard" component={Dashboard} options={{ 
+        <Tab.Screen name="Dashboard" component={DashboardScreen} options={{ 
           title: 'Dashboard',
           tabBarIcon: () => <Icon name="dashboard" size={20} color="purple" />
          }} />
-        <Tab.Screen name="Profile" component={Screen} options={{
+        <Tab.Screen name="Profile" component={ProfileScreen} options={{
           title: 'Perfil',
           tabBarIcon: () => <Icon name="user" size={20} color="purple" />
         }} />
