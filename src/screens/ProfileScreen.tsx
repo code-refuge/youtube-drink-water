@@ -1,20 +1,23 @@
-import { Avatar, Box, Divider, Slider, Text } from 'native-base';
-import React, { useContext, useState } from 'react';
-import { SafeAreaView } from 'react-native';
-import { UserContext } from '../contexts/UserContext';
+import { Avatar, Box, Button, Divider, Slider, Text } from "native-base";
+import React, { useContext, useEffect, useState } from "react";
+import { SafeAreaView } from "react-native";
+import { UserContext } from "../contexts/UserContext";
 
-interface ProfileScreenProps {
-}
+interface ProfileScreenProps {}
 
-export const ProfileScreen: React.FC<ProfileScreenProps> = ({
-}) => {
-  const { goal, setGoal, user } = useContext(UserContext);
+export const ProfileScreen: React.FC<ProfileScreenProps> = ({}) => {
+  const { goal, storeData, user, getData } = useContext(UserContext);
 
   return (
     <SafeAreaView>
-      <Avatar bg="purple.500" alignSelf="center" size="2xl" source={{
-        uri: user?.photo || undefined,
-      }}>
+      <Avatar
+        bg="purple.500"
+        alignSelf="center"
+        size="2xl"
+        source={{
+          uri: user?.photo || undefined,
+        }}
+      >
         {user?.name.substring(0, 1)}
       </Avatar>
       <Text fontSize="2xl" textAlign="center" mt={4}>
@@ -35,7 +38,7 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
           value={goal}
           minValue={0}
           maxValue={4000}
-          onChange={(value) => setGoal(value)}
+          onChange={(value) => storeData(value)}
           step={100}
         >
           <Slider.Track>
