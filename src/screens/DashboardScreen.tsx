@@ -1,11 +1,9 @@
-import { Box, Button, HStack, Text, VStack } from 'native-base';
-import React, { useContext, useEffect, useState } from 'react';
-import { useToast } from 'native-base';
-import { UserContext } from '../contexts/UserContext';
+import { Box, Button, HStack, Text, VStack } from "native-base";
+import React, { useContext, useEffect, useState } from "react";
+import { useToast } from "native-base";
+import { UserContext } from "../contexts/UserContext";
 
-interface IDashboardProps {
-
-}
+interface IDashboardProps {}
 
 export const DashboardScreen: React.FC<IDashboardProps> = () => {
   const { goal } = useContext(UserContext);
@@ -18,7 +16,7 @@ export const DashboardScreen: React.FC<IDashboardProps> = () => {
     setWater(water + cupSize);
     toast.show({
       description: `Você bebeu ${cupSize}ml de água`,
-    })
+    });
   };
 
   const handleChangeCupSize = (size: number) => {
@@ -31,47 +29,38 @@ export const DashboardScreen: React.FC<IDashboardProps> = () => {
         description: "Você atingiu sua meta de água",
         placement: "top",
         colorScheme: "success",
-      })
+      });
     }
   }, [water]);
 
   return (
     <VStack
       flex={1}
-      width='100%'
-      justifyContent='space-between'
-      alignItems='center'
+      width="100%"
+      justifyContent="space-between"
+      alignItems="center"
       p={4}
       my={30}
     >
       <Text fontSize="sm">
-        {'  '} copo de {cupSize}ml
+        {"  "} copo de {cupSize}ml
       </Text>
-
 
       <VStack>
         <HStack alignItems="center" justifyContent="center">
-          <Text fontSize="6xl">
-            {water}
-          </Text>
+          <Text fontSize="6xl">{water}</Text>
           <Text fontSize="xl">
-            {'  '}/ {goal} ml
+            {"  "}/ {goal} ml
           </Text>
         </HStack>
 
-
-
-        <Button
-          mt={5}
-          colorScheme="primary"
-          onPress={handleWater}
-        >
+        <Button mt={5} colorScheme="primary" onPress={handleWater}>
           Beber água
         </Button>
       </VStack>
 
       <Box mt={10}>
-        <Button.Group >
+        <Button.Group>
           <Button onPress={() => handleChangeCupSize(200)} colorScheme="teal">
             Copo americano
           </Button>
@@ -83,7 +72,6 @@ export const DashboardScreen: React.FC<IDashboardProps> = () => {
           </Button>
         </Button.Group>
       </Box>
-
     </VStack>
   );
 };
