@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "377461121853",
+    "project_id": "refugio-code-drinking-water",
+    "storage_bucket": "refugio-code-drinking-water.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377461121853:android:549b354946f9072bd25b54",
+        "android_client_info": {
+          "package_name": "com.refugiocode.drinkingwater"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiOJq95skVw2vJIxS60ExFnmLPziE2SPM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
