@@ -1,41 +1,101 @@
-import { Avatar, Box, Button, Divider, Input, Slider, Text } from "native-base";
+import {
+  Avatar,
+  Box,
+  Button,
+  Divider,
+  Input,
+  Slider,
+  Text,
+  TextField,
+} from "native-base";
 import React, { useContext, useEffect, useState } from "react";
-import { SafeAreaView } from "react-native";
+import { Alert, SafeAreaView } from "react-native";
 import { UserContext } from "../contexts/UserContext";
 import { usePersistState } from "../hooks/usePersistState";
+import auth from "@react-native-firebase/auth";
 
 interface ProfileScreenProps {}
 
 export const ProfileScreen: React.FC<ProfileScreenProps> = ({}) => {
+  const [initializing, setInitializing] = useState(true);
   const [goal2, setGoal2] = usePersistState(2, "@goal2");
-  const { goal, user, setGoal, setUser } = useContext(UserContext);
+  const {
+    goal,
+    user,
+    setGoal,
+    createAccountOnFirebase,
+    forgotPassword,
+    login,
+    logout,
+  } = useContext(UserContext);
+
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   return (
     <SafeAreaView>
+      <TextField
+        onChangeText={(value) => {
+          setEmail(value);
+        }}
+        placeholder="Email"
+      />
+
+      <TextField
+        onChangeText={(value) => {
+          setPassword(value);
+        }}
+        type="password"
+        placeholder="Senha"
+      />
+
+      <Button
+        onPress={() => {
+          createAccountOnFirebase({
+            email,
+            password,
+          });
+        }}
+      >
+        Criar conta
+      </Button>
+
+      <Button
+        onPress={() => {
+          login({
+            email,
+            password,
+          });
+        }}
+      >
+        login
+      </Button>
+
+      <Button
+        onPress={() => {
+          forgotPassword({
+            email,
+          });
+        }}
+      >
+        recuperar senha
+      </Button>
+
+      <Button onPress={logout}>logout</Button>
+
       <Avatar
         bg="purple.500"
         alignSelf="center"
         size="2xl"
         source={{
-          uri: user?.photo || undefined,
+          uri: user?.photoURL || undefined,
         }}
       >
-        {user?.name.substring(0, 1)}
+        {user?.displayName?.substring(0, 1)}
       </Avatar>
       <Text fontSize="2xl" textAlign="center" mt={4}>
-        {user?.name}
+        {user?.displayName || user?.email}
       </Text>
-
-      <Input
-        defaultValue={user?.name}
-        onChangeText={(value) => {
-          setUser({
-            name: value,
-            photo: String(user?.photo),
-          });
-        }}
-        placeholder="Default Input"
-      />
 
       <Divider my={10} />
 
